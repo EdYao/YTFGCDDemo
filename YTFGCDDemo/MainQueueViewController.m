@@ -69,7 +69,7 @@
 }
 
 - (void)downLoadImg {
-    //异步派发全局队列，加载图片数据，再回到主线程队列，加载图片，这是所有图片加载的库常用的套路
+    //异步派发全局队列加载图片数据，再回到主线程更新图片，这是所有图片加载的库常用的套路。Asynchronous distribution of global queue to load image data, and then back to the main thread to update the picture, which is all the pictures loaded library routines commonly used routines.
     dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(globalQueue, ^{
         NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://7xp4uf.com1.z0.glb.clouddn.com/thumb_IMG_0908_1024.jpg"]];

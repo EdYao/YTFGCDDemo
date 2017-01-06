@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "MainQueueViewController.h"
-#import "DispatchSyncViewController.h"
+#import "GlobalQueueViewController.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -63,7 +63,7 @@
 }
 
 - (void)dispatchAsync {
-    UIViewController *vc = [[MainQueueViewController alloc]initWithNibName:@"MainQueueViewController" bundle:nil];
+    UIViewController *vc = [[GlobalQueueViewController alloc]initWithNibName:@"GlobalQueueViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
