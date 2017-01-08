@@ -17,6 +17,12 @@
 		57272D061E15005100931431 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 57272D041E15005100931431 /* LaunchScreen.storyboard */; };
 		57272D111E15005100931431 /* YTFGCDDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57272D101E15005100931431 /* YTFGCDDemoTests.m */; };
 		57272D1C1E15005100931431 /* YTFGCDDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 57272D1B1E15005100931431 /* YTFGCDDemoUITests.m */; };
+		579A80201E2148450071BB3C /* ConcurrentQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 579A801E1E2148450071BB3C /* ConcurrentQueueViewController.m */; };
+		579A80211E2148450071BB3C /* ConcurrentQueueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 579A801F1E2148450071BB3C /* ConcurrentQueueViewController.xib */; };
+		57B031BD1E1F7EFE0037EC3C /* CustomQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B031BB1E1F7EFE0037EC3C /* CustomQueueViewController.m */; };
+		57B031BE1E1F7EFE0037EC3C /* CustomQueueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B031BC1E1F7EFE0037EC3C /* CustomQueueViewController.xib */; };
+		57B031C41E1F7F5B0037EC3C /* SerialQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57B031C21E1F7F5B0037EC3C /* SerialQueueViewController.m */; };
+		57B031C51E1F7F5B0037EC3C /* SerialQueueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57B031C31E1F7F5B0037EC3C /* SerialQueueViewController.xib */; };
 		57D643911E1E98E300F8C153 /* GlobalQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 57D6438F1E1E98E300F8C153 /* GlobalQueueViewController.m */; };
 		57D643921E1E98E300F8C153 /* GlobalQueueViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57D643901E1E98E300F8C153 /* GlobalQueueViewController.xib */; };
 /* End PBXBuildFile section */
@@ -58,6 +64,15 @@
 		57272D171E15005100931431 /* YTFGCDDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YTFGCDDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		57272D1B1E15005100931431 /* YTFGCDDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YTFGCDDemoUITests.m; sourceTree = "<group>"; };
 		57272D1D1E15005100931431 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		579A801D1E2148450071BB3C /* ConcurrentQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcurrentQueueViewController.h; sourceTree = "<group>"; };
+		579A801E1E2148450071BB3C /* ConcurrentQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcurrentQueueViewController.m; sourceTree = "<group>"; };
+		579A801F1E2148450071BB3C /* ConcurrentQueueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConcurrentQueueViewController.xib; sourceTree = "<group>"; };
+		57B031BA1E1F7EFE0037EC3C /* CustomQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomQueueViewController.h; sourceTree = "<group>"; };
+		57B031BB1E1F7EFE0037EC3C /* CustomQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomQueueViewController.m; sourceTree = "<group>"; };
+		57B031BC1E1F7EFE0037EC3C /* CustomQueueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomQueueViewController.xib; sourceTree = "<group>"; };
+		57B031C11E1F7F5B0037EC3C /* SerialQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SerialQueueViewController.h; sourceTree = "<group>"; };
+		57B031C21E1F7F5B0037EC3C /* SerialQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SerialQueueViewController.m; sourceTree = "<group>"; };
+		57B031C31E1F7F5B0037EC3C /* SerialQueueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SerialQueueViewController.xib; sourceTree = "<group>"; };
 		57D6438E1E1E98E300F8C153 /* GlobalQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalQueueViewController.h; sourceTree = "<group>"; };
 		57D6438F1E1E98E300F8C153 /* GlobalQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalQueueViewController.m; sourceTree = "<group>"; };
 		57D643901E1E98E300F8C153 /* GlobalQueueViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlobalQueueViewController.xib; sourceTree = "<group>"; };
@@ -131,6 +146,7 @@
 		57272CF51E15005100931431 /* YTFGCDDemo */ = {
 			isa = PBXGroup;
 			children = (
+				57B031B91E1F7EFE0037EC3C /* CustomQueue */,
 				5723101B1E1CE3CA00A59D0E /* MainQueue */,
 				5723101A1E1CE3B500A59D0E /* GlobalQueue */,
 				57272CF91E15005100931431 /* AppDelegate.h */,
@@ -170,6 +186,38 @@
 				57272D1D1E15005100931431 /* Info.plist */,
 			);
 			path = YTFGCDDemoUITests;
+			sourceTree = "<group>";
+		};
+		57B031B91E1F7EFE0037EC3C /* CustomQueue */ = {
+			isa = PBXGroup;
+			children = (
+				57B031C01E1F7F460037EC3C /* SERIAL_QUEUE */,
+				57B031BF1E1F7F400037EC3C /* CONCURRENT_QUEUE */,
+				57B031BA1E1F7EFE0037EC3C /* CustomQueueViewController.h */,
+				57B031BB1E1F7EFE0037EC3C /* CustomQueueViewController.m */,
+				57B031BC1E1F7EFE0037EC3C /* CustomQueueViewController.xib */,
+			);
+			path = CustomQueue;
+			sourceTree = "<group>";
+		};
+		57B031BF1E1F7F400037EC3C /* CONCURRENT_QUEUE */ = {
+			isa = PBXGroup;
+			children = (
+				579A801D1E2148450071BB3C /* ConcurrentQueueViewController.h */,
+				579A801E1E2148450071BB3C /* ConcurrentQueueViewController.m */,
+				579A801F1E2148450071BB3C /* ConcurrentQueueViewController.xib */,
+			);
+			path = CONCURRENT_QUEUE;
+			sourceTree = "<group>";
+		};
+		57B031C01E1F7F460037EC3C /* SERIAL_QUEUE */ = {
+			isa = PBXGroup;
+			children = (
+				57B031C11E1F7F5B0037EC3C /* SerialQueueViewController.h */,
+				57B031C21E1F7F5B0037EC3C /* SerialQueueViewController.m */,
+				57B031C31E1F7F5B0037EC3C /* SerialQueueViewController.xib */,
+			);
+			path = SERIAL_QUEUE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,8 +330,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				57272D061E15005100931431 /* LaunchScreen.storyboard in Resources */,
+				57B031C51E1F7F5B0037EC3C /* SerialQueueViewController.xib in Resources */,
 				57D643921E1E98E300F8C153 /* GlobalQueueViewController.xib in Resources */,
+				579A80211E2148450071BB3C /* ConcurrentQueueViewController.xib in Resources */,
 				57272D031E15005100931431 /* Assets.xcassets in Resources */,
+				57B031BE1E1F7EFE0037EC3C /* CustomQueueViewController.xib in Resources */,
 				57272D011E15005100931431 /* Main.storyboard in Resources */,
 				572310191E1CE3A500A59D0E /* MainQueueViewController.xib in Resources */,
 			);
@@ -311,10 +362,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				57D643911E1E98E300F8C153 /* GlobalQueueViewController.m in Sources */,
+				579A80201E2148450071BB3C /* ConcurrentQueueViewController.m in Sources */,
+				57B031C41E1F7F5B0037EC3C /* SerialQueueViewController.m in Sources */,
 				57272CFE1E15005100931431 /* ViewController.m in Sources */,
 				57272CFB1E15005100931431 /* AppDelegate.m in Sources */,
 				57272CF81E15005100931431 /* main.m in Sources */,
 				572310181E1CE3A500A59D0E /* MainQueueViewController.m in Sources */,
+				57B031BD1E1F7EFE0037EC3C /* CustomQueueViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,6 +519,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ML674CKRN7;
 				INFOPLIST_FILE = YTFGCDDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Charles.YTFGCDDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -477,6 +532,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = ML674CKRN7;
 				INFOPLIST_FILE = YTFGCDDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Charles.YTFGCDDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";

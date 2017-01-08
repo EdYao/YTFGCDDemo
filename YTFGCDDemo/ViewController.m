@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MainQueueViewController.h"
 #import "GlobalQueueViewController.h"
+#import "CustomQueueViewController.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.titles = @[@"main queue",@"global queue"];
+    self.titles = @[@"main queue",@"global queue",@"custom queue"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
@@ -45,25 +46,36 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.row) {
         case 0:
-            [self dispatchSync];
+            [self gotoMainQueueVC];
             break;
             
         case 1:
-            [self dispatchAsync];
+            [self gotoGlobalQueueVC];
             break;
+            
+        case 2:
+            [self gotoCustomQueueVC];
+            break;
+            
+            
             
         default:
             break;
     }
 }
 
-- (void)dispatchSync {
+- (void)gotoMainQueueVC {
     UIViewController *vc = [[MainQueueViewController alloc]initWithNibName:@"MainQueueViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)dispatchAsync {
+- (void)gotoGlobalQueueVC {
     UIViewController *vc = [[GlobalQueueViewController alloc]initWithNibName:@"GlobalQueueViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)gotoCustomQueueVC {
+    UIViewController *vc = [[CustomQueueViewController alloc]initWithNibName:@"CustomQueueViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

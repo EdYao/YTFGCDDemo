@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (copy, nonatomic) NSArray *cellTitles;
+
 @end
 
 @implementation GlobalQueueViewController
@@ -19,6 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setTitle:@"gloabal queue"];
     self.cellTitles = @[@"dispatch_sync",@"dispatch_async",@"multiple dispatch_async"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }

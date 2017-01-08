@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self setTitle:@"Main Queue"];
+    [self setTitle:@"main queue"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     self.cellTitles = @[@"dispatch_sync",@"dispatch_async",@"downdload img"];
 }
