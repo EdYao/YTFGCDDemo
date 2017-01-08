@@ -43,26 +43,29 @@
 ##The main queue（主线程串行队列)
 派发方式
 1. 同步派发dispatch_sync，会造成死锁，没人会这么干。。
+
 `dispatch_sync(dispatch_get_main_queue(), ^{
         NSLog(@"dispatch_sync main queue");
     });`
-    我们无法看到block中的打印
-2. 异步派发
-dispatchAsync
+    
+我们无法看到block中的打印
+2. 异步派发dispatchAsync
+
 `NSLog(@"current task");
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"dispatch_async main queue");
     });
     NSLog(@"next task");`
-    打印内容
-    ` 
-2017-01-06 14:11:49.744 YTFGCDDemo[7773:166871] current task
+    
+打印内容
+
+`2017-01-06 14:11:49.744 YTFGCDDemo[7773:166871] current task
 2017-01-06 14:11:49.745 YTFGCDDemo[7773:166871] next task
-2017-01-06 14:11:49.747 YTFGCDDemo[7773:166871] dispatch_async main queue
-`
+2017-01-06 14:11:49.747 YTFGCDDemo[7773:166871] dispatch_async main queue`
+
 3. 异步派发全局队列加载图片数据，再回到主线程显示图片
-`
-dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+`dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(globalQueue, ^{
         NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://7xp4uf.com1.z0.glb.clouddn.com/thumb_IMG_0908_1024.jpg"]];
         UIImage *image = [UIImage imageWithData:imgData];
@@ -73,8 +76,8 @@ dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY
             [imgView setCenter:self.view.center];
             [self.view addSubview:imgView];
         });
-    });
-`
+    });`
+    
 4. 主线程串行队列无法调用dispatch_resume()和dispatch_suspend()来控制执行继续或中断。
 
 ## Global queue（全局并发队列)
