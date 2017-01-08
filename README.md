@@ -42,12 +42,10 @@
 
 ##The main queue（主线程串行队列)
 派发方式
-1. 同步派发dispatch_sync，会造成死锁，没人会这么干（你跟我说你不是人我也拿你没办法）。
-`
-dispatch_sync(dispatch_get_main_queue(), ^{
+1. 同步派发dispatch_sync，会造成死锁，没人会这么干。。
+`dispatch_sync(dispatch_get_main_queue(), ^{
         NSLog(@"dispatch_sync main queue");
-    });
-`
+    });`
     我们无法看到block中的打印
 2. 异步派发
 dispatchAsync
@@ -55,8 +53,7 @@ dispatchAsync
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"dispatch_async main queue");
     });
-    NSLog(@"next task");
-`
+    NSLog(@"next task");`
     打印内容
     ` 
 2017-01-06 14:11:49.744 YTFGCDDemo[7773:166871] current task
