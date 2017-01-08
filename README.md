@@ -44,18 +44,21 @@
 派发方式
 1. 同步派发dispatch_sync，会造成死锁，没人会这么干。。
 
-`dispatch_sync(dispatch_get_main_queue(), ^{
+```Objective-C
+dispatch_sync(dispatch_get_main_queue(), ^{
         NSLog(@"dispatch_sync main queue");
-    });`
+    });
+```
     
 我们无法看到block中的打印
 2. 异步派发dispatchAsync
-
-`NSLog(@"current task");
+```Objective-C
+NSLog(@"current task");
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"dispatch_async main queue");
     });
-    NSLog(@"next task");`
+    NSLog(@"next task");
+```
     
 打印内容
 
@@ -65,7 +68,8 @@
 
 3. 异步派发全局队列加载图片数据，再回到主线程显示图片
 
-`dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+```Objective-C
+dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(globalQueue, ^{
         NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"http://7xp4uf.com1.z0.glb.clouddn.com/thumb_IMG_0908_1024.jpg"]];
         UIImage *image = [UIImage imageWithData:imgData];
@@ -76,7 +80,8 @@
             [imgView setCenter:self.view.center];
             [self.view addSubview:imgView];
         });
-    });`
+    });
+```
     
 4. 主线程串行队列无法调用dispatch_resume()和dispatch_suspend()来控制执行继续或中断。
 
@@ -85,7 +90,8 @@
 在一些耗时相对较长的业务场景中，我们通常会另开一个线程来执行这些业务，然后再通知主线程更新界面，以免造成界面长时间的卡顿。这些场景包括网络请求，加载图片，数据库读取等。
 
 1. 同步派发Global Queue
-	`
+
+```Objective-C
 dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     NSLog(@"current task");
     dispatch_sync(globalQueue, ^{
@@ -93,20 +99,23 @@ dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY
         NSLog(@"sleep 2.0s");
     });
     NSLog(@"next task");
+
+```
+
+打印如下
 `
-    打印如下
-    `
 2017-01-06 14:29:12.528 YTFGCDDemo[7773:166871] current task
 2017-01-06 14:29:14.600 YTFGCDDemo[7773:166871] sleep 2.0s(可以看到时间比上一条打印滞后两秒)
 2017-01-06 14:29:14.600 YTFGCDDemo[7773:166871] next task
 `
 解释
- 1. 主线程进入代码区块，打印 ”current task“
- 2. 主线程将block添加到全局队列中，主线程被挂起知道block完成；同时全局队列并发处理任务。
- 3. block中的代码被执行，首先线程被阻塞两秒，然后打印“sleep 2.0s”
- 4. block返回，主线程被恢复，打印“next task”。
+ a. 主线程进入代码区块，打印 ”current task“
+ b. 主线程将block添加到全局队列中，主线程被挂起知道block完成；同时全局队列并发处理任务。
+ c. block中的代码被执行，首先线程被阻塞两秒，然后打印“sleep 2.0s”
+ d. block返回，主线程被恢复，打印“next task”。
 2. 异步派发Global Queue
-`
+
+```Objective-C
 dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     NSLog(@"current task");
     dispatch_async(globalQueue, ^{
@@ -114,7 +123,7 @@ dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY
         NSLog(@"sleep 2.0s");
     });
     NSLog(@"next task");
-` 
+``` 
 打印如下
 `
 2017-01-06 14:31:28.163 YTFGCDDemo[7773:166871] current task
@@ -129,19 +138,21 @@ dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY
  5. 全局队列被阻塞2s，然后开始继续，打印“sleep 2.0s”。
 
 3. 异步派发多个Global Queue
-`
+
+```Objective-C
 for(NSInteger i = 0; i<100; i++) {
         dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         dispatch_async(globalQueue, ^{
             NSLog(@"%ld",i);//可以看到不是严格按照从小到大的顺序打印的。You can see it is not print strictly in accordance with the order from small to large
         });
      }
-`
+```
      
 ## Custom queue (自定义队列)
 1. 自定义串行队列
  a. 同步派发
- `
+ 
+ ```Objective-C
  dispatch_queue_t serialQueue = dispatch_queue_create("com.Charles.serialQueue", DISPATCH_QUEUE_SERIAL);
     NSLog(@"当前任务");
     dispatch_sync(serialQueue, ^{
@@ -152,16 +163,18 @@ for(NSInteger i = 0; i<100; i++) {
         NSLog(@"次加入自定义串行队列");
     });
     NSLog(@"下一个任务");
+```
+打印为：
 `
-    打印为：
-    `
 2017-01-08 00:14:42.694038 YTFGCDDemo[781:149124] 当前任务
 2017-01-08 00:14:42.694178 YTFGCDDemo[781:149124] 最先加入自定义串行队列
 2017-01-08 00:14:44.695284 YTFGCDDemo[781:149124] 次加入自定义串行队列
 2017-01-08 00:14:44.695530 YTFGCDDemo[781:149124] 下一个任务
 `
+
   b. 异步派发
-	`
+  
+  ```Objective-C
 dispatch_queue_t serialQueue = dispatch_queue_create("com.Charles.serialQueue", DISPATCH_QUEUE_SERIAL);
     NSLog(@"当前任务");
     dispatch_async(serialQueue, ^{
@@ -172,11 +185,12 @@ dispatch_queue_t serialQueue = dispatch_queue_create("com.Charles.serialQueue", 
         NSLog(@"次加入自定义串行队列");
     });
     NSLog(@"下一个任务");
-` 
+```
 2. 自定义并发队列
 
  a. 同步派发
-` 
+ 
+```Objective-C
 dispatch_queue_t conCurrentQueue = dispatch_queue_create("com.Charles.conCurrentQueue", DISPATCH_QUEUE_CONCURRENT);
     NSLog(@"current task");
     dispatch_sync(conCurrentQueue, ^{
@@ -186,7 +200,7 @@ dispatch_queue_t conCurrentQueue = dispatch_queue_create("com.Charles.conCurrent
         NSLog(@"次加入队列");
     });
     NSLog(@"next task");
-`
+```
 打印：
 `
 2017-01-08 13:21:20.766763 YTFGCDDemo[1207:248050] current task
@@ -195,7 +209,8 @@ dispatch_queue_t conCurrentQueue = dispatch_queue_create("com.Charles.conCurrent
 2017-01-08 13:21:20.767350 YTFGCDDemo[1207:248050] next task
 `
  b. 异步派发
-`
+
+```Objective-C
 dispatch_queue_t serialQueue = dispatch_queue_create("com.Charles.serialQueue", DISPATCH_QUEUE_CONCURRENT);
     NSLog(@"当前任务");
     dispatch_async(serialQueue, ^{
@@ -206,7 +221,7 @@ dispatch_queue_t serialQueue = dispatch_queue_create("com.Charles.serialQueue", 
         NSLog(@"次加入自定义串行队列");
     });
     NSLog(@"下一个任务");
-`
+```
 打印：
 `
 2017-01-08 13:28:06.228210 YTFGCDDemo[1207:248050] 当前任务
