@@ -62,9 +62,11 @@ NSLog(@"current task");
     
 打印内容
 
-`2017-01-06 14:11:49.744 YTFGCDDemo[7773:166871] current task
+```Objective-C
+2017-01-06 14:11:49.744 YTFGCDDemo[7773:166871] current task
 2017-01-06 14:11:49.745 YTFGCDDemo[7773:166871] next task
-2017-01-06 14:11:49.747 YTFGCDDemo[7773:166871] dispatch_async main queue`
+2017-01-06 14:11:49.747 YTFGCDDemo[7773:166871] dispatch_async main queue
+```
 
 3. 异步派发全局队列加载图片数据，再回到主线程显示图片
 
@@ -103,11 +105,12 @@ dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY
 ```
 
 打印如下
-`
+```Objective-C
 2017-01-06 14:29:12.528 YTFGCDDemo[7773:166871] current task
 2017-01-06 14:29:14.600 YTFGCDDemo[7773:166871] sleep 2.0s(可以看到时间比上一条打印滞后两秒)
 2017-01-06 14:29:14.600 YTFGCDDemo[7773:166871] next task
-`
+```
+
 解释
  a. 主线程进入代码区块，打印 ”current task“
  b. 主线程将block添加到全局队列中，主线程被挂起知道block完成；同时全局队列并发处理任务。
@@ -125,11 +128,12 @@ dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY
     NSLog(@"next task");
 ``` 
 打印如下
-`
+
+```Objective-C
 2017-01-06 14:31:28.163 YTFGCDDemo[7773:166871] current task
 2017-01-06 14:31:28.163 YTFGCDDemo[7773:166871] next task
 2017-01-06 14:31:30.238 YTFGCDDemo[7773:166936] sleep 2.0s
-` 
+```
 解释：
  1. 主线程进入代码区块，打印“current task”。
  2. block被添加到一个全局并发队列中，将稍后执行。（主线程没有被挂起。）
@@ -165,12 +169,13 @@ for(NSInteger i = 0; i<100; i++) {
     NSLog(@"下一个任务");
 ```
 打印为：
-`
+
+```Objective-C
 2017-01-08 00:14:42.694038 YTFGCDDemo[781:149124] 当前任务
 2017-01-08 00:14:42.694178 YTFGCDDemo[781:149124] 最先加入自定义串行队列
 2017-01-08 00:14:44.695284 YTFGCDDemo[781:149124] 次加入自定义串行队列
 2017-01-08 00:14:44.695530 YTFGCDDemo[781:149124] 下一个任务
-`
+```
 
   b. 异步派发
   
@@ -202,12 +207,13 @@ dispatch_queue_t conCurrentQueue = dispatch_queue_create("com.Charles.conCurrent
     NSLog(@"next task");
 ```
 打印：
-`
+
+```Objective-C
 2017-01-08 13:21:20.766763 YTFGCDDemo[1207:248050] current task
 2017-01-08 13:21:20.767022 YTFGCDDemo[1207:248050] 先加入队列
 2017-01-08 13:21:20.767216 YTFGCDDemo[1207:248050] 次加入队列
 2017-01-08 13:21:20.767350 YTFGCDDemo[1207:248050] next task
-`
+```
  b. 异步派发
 
 ```Objective-C
@@ -223,12 +229,13 @@ dispatch_queue_t serialQueue = dispatch_queue_create("com.Charles.serialQueue", 
     NSLog(@"下一个任务");
 ```
 打印：
-`
+
+```Objective-C
 2017-01-08 13:28:06.228210 YTFGCDDemo[1207:248050] 当前任务
 2017-01-08 13:28:06.228657 YTFGCDDemo[1207:248050] 下一个任务
 2017-01-08 13:28:06.235947 YTFGCDDemo[1207:249420] 最先加入自定义串行队列
 2017-01-08 13:28:06.236469 YTFGCDDemo[1207:249429] 次加入自定义串行队列
-`
+```
 
 关于GCD的更多知识点：使用 dispatch_after 延后工作，让你的单例线程安全，处理读者与写者问题等，将在后面的博客中提到。
 博客地址：[简书](http://www.jianshu.com/p/434436aca674)
