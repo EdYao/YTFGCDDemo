@@ -54,7 +54,7 @@
 }
 
 - (void)dispatchSync {
-    //this code is going to crash,no one will use like this
+    //this code may crash
     dispatch_sync(dispatch_get_main_queue(), ^{
         NSLog(@"dispatch_sync main queue");
     });

@@ -10,6 +10,7 @@
 #import "MainQueueViewController.h"
 #import "GlobalQueueViewController.h"
 #import "CustomQueueViewController.h"
+#import "ThreadSafetyViewController.h"
 
 @interface ViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.titles = @[@"main queue",@"global queue",@"custom queue"];
+    self.titles = @[@"main queue",@"global queue",@"custom queue",@"thread safety"];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 }
 
@@ -57,10 +58,10 @@
             [self gotoCustomQueueVC];
             break;
             
-            
-            
-        default:
+        case 3:
+            [self gotoThreadSafetyVC];
             break;
+            
     }
 }
 
@@ -76,6 +77,11 @@
 
 - (void)gotoCustomQueueVC {
     UIViewController *vc = [[CustomQueueViewController alloc]initWithNibName:@"CustomQueueViewController" bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)gotoThreadSafetyVC {
+    UIViewController *vc = [[ThreadSafetyViewController alloc]initWithNibName:@"ThreadSafetyViewController" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
